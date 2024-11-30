@@ -38,7 +38,9 @@ class ItemController extends Controller
         if ($request->isMethod('post')) {
             // バリデーション
             $this->validate($request, [
-                'name' => 'required|max:100',
+                'name' => 'required|string|max:100',
+                'type' => 'required|string|max:100',
+                'detail' => 'string|max:100'
             ]);
 
             // 商品登録
@@ -53,5 +55,44 @@ class ItemController extends Controller
         }
 
         return view('item.add');
+    }
+
+    /**
+     * 商品をモーダルに表示
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function edit($id)
+    {
+        $item = Item::findOrFail($id);
+
+        return response()->json($item); //JSON形式で返却
+    }
+
+    /**
+     * 商品をモーダル画面で編集
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'type' => 'required|string|max:100',
+            'detail' => 'string|max:100'
+        ]);
+
+        $item = Item::findOrFail($id);
+        $item->update([
+            'user_id' => Auth::user()->id,
+            'name' => $request->input('name'),
+            'type' => $request->input('type'),
+            'detail' => $request->input('detail'),
+        ]);
+
+        return response()->json(['message' => '更新が完了しました。']);
     }
 }
