@@ -41,7 +41,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->detail }}</td>
-                                    <td><button class="btn btn-primary editBtn" data-id="{{ $item->id }}">編集</button></td>
+                                    <td class="edit-btn"><button class="btn btn-info editBtn" data-id="{{ $item->id }}">編集</button></td>
                                 </tr>
                             @endforeach
                         </tbody>
