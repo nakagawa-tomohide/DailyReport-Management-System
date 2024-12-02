@@ -95,4 +95,15 @@ class ItemController extends Controller
 
         return response()->json(['message' => '更新が完了しました。']);
     }
+
+    /**
+     * アイテムを取得してJSONで返す
+     *
+     * @return void
+     */
+    public function fetchItems()
+    {
+        $Items = Item::all();
+        return response()->json($Items);
+    }
 }

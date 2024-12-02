@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
+                    <table class="table table-hover text-nowrap" id="itemList">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -42,6 +42,7 @@
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->detail }}</td>
                                     <td class="edit-btn"><button class="btn btn-info editBtn" data-id="{{ $item->id }}">編集</button></td>
+                                    <td class="delete-btn"><button class="btn btn-danger deleteBtn" data-id="{{ $item->id }}">削除</button></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -59,7 +60,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label></button>
                 </div>
                 <div class="modal-body">
-                    <form action="editForm" method="post">
+                    <form method="post" id="editForm">
                         @csrf
                         @method('PUT')
                         <input type="hidden" id="itemId">
@@ -75,8 +76,10 @@
                             <label for="itemDetail" class="form-label">詳細</label>
                             <input type="text" class="form-control" id="itemDetail">
                         </div>
-                        <button type="button" class="btn btn-primary" id="saveChanges">保存</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        <div class="modal-btn">
+                            <button type="button" class="btn btn-info" id="saveChanges">保存</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
                     </form>
                 </div>
             </div>
