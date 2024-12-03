@@ -29,4 +29,5 @@ Route::prefix('items')->group(function () {
     Route::get('/{id}/edit', [ItemController::class, 'edit']);
     Route::put('/{id}', [ItemController::class, 'update']);
     Route::get('/fetchItems', [ItemController::class, 'fetchItems']);
+    Route::get('/{id}/delete', [ItemController::class, 'delete']);
 });
