@@ -1,5 +1,10 @@
-/* 商品一覧画面 */
-
+/* 日報一覧画面 */
+button{
+    display:inline-block;
+    }
+    div{
+    text-align:center;
+    }
 
 /* モーダル画面 */
 .modal-btn {
