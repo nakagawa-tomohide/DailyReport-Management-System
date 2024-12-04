@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +22,12 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('items')->group(function () {
-    Route::get('/', [ItemController::class, 'index']);
-    Route::get('/add', [ItemController::class, 'add']);
-    Route::post('/add', [ItemController::class, 'add']);
-    Route::get('/{id}/edit', [ItemController::class, 'edit']);
-    Route::put('/{id}', [ItemController::class, 'update']);
-    Route::get('/fetchItems', [ItemController::class, 'fetchItems']);
-    Route::get('/{id}/delete', [ItemController::class, 'delete']);
+Route::prefix('reports')->group(function () {
+    Route::get('/', [ReportController::class, 'index']);
+    Route::get('/add', [ReportController::class, 'add']);
+    Route::post('/add', [ReportController::class, 'add']);
+    Route::get('/{id}/edit', [ReportController::class, 'edit']);
+    Route::put('/{id}', [ReportController::class, 'update']);
+    Route::get('/fetchReports', [ReportController::class, 'fetchReports']);
+    Route::get('/{id}/delete', [ReportController::class, 'delete']);
 });

@@ -1,19 +1,20 @@
 // 商品データをモーダルに表示
 $(document).on('click', '.editBtn', function () {
-    const itemId = $(this).data('id');
+    const reportId = $(this).data('id');
 
     // 商品データを取得
     $.ajax({
-        url: `/items/${itemId}/edit`, //ルートを適宣変更
+        url: `/reports/${reportId}/edit`, //ルートを適宣変更
         type: 'GET',
         dataType: 'json'
     })
     .done(function(data) { // dataにはJSONが入っている
         // モーダルにデータをセット
-        $('#itemId').val(data.id);
-        $('#itemName').val(data.name);
-        $('#itemType').val(data.type);
-        $('#itemDetail').val(data.detail);
+        $('#reportId').val(data.id);
+        $('#reportName').val(data.name);
+        $('#reportLocation').val(data.location);
+        $('#reportMachine').val(data.machine);
+        $('#reportFuel').val(data.fuel);
 
         $('#editModal').modal('show');
     })
@@ -25,21 +26,24 @@ $(document).on('click', '.editBtn', function () {
 
 // 編集内容を保存
 $('#saveChanges').on('click', function() {
-    const itemId = $('#itemId').val();
-    const itemName = $('#itemName').val();
-    const itemType = $('#itemType').val();
-    const itemDetail = $('#itemDetail').val();
+    const reportId = $('#reportId').val();
+    const reportName = $('#reportName').val();
+    const reportLocation = $('#reportLocation').val();
+    const reportMachine = $('#reportMachine').val();
+    const reportFuel = $('#reportFuel').val();
+
 
     // データを送信
     $.ajax({
-        url: `/items/${itemId}`,
+        url: `/reports/${reportId}`,
         type: 'PUT', // 更新はPUTリクエスト
         dataType: 'json',
         data: {
             _token: $('meta[name="csrf-token"]').attr('content'), // CSRFトークン
-            name: itemName,
-            type: itemType,
-            detail: itemDetail
+            name: reportName,
+            location: reportLocation,
+            machine: reportMachine,
+            fuel: reportFuel,
         }
     })
     .done(function() {
@@ -57,10 +61,10 @@ $('#saveChanges').on('click', function() {
 
 // 商品を削除
 $(document).on('click', '.deleteBtn', function(){
-    const itemId = $(this).data('id');
+    const reportId = $(this).data('id');
 
     $.ajax ({
-        url: `items/${itemId}/delete`,
+        url: `reports/${reportId}/delete`,
         type: 'GET',
         dataType: 'json',
     })
@@ -78,21 +82,22 @@ $(document).on('click', '.deleteBtn', function(){
 // Ajaxでリストを再描写する
 function fetchItemList() {
     $.ajax({
-        url: `items/fetchItems`,
+        url: `reports/fetchReports`,
         type: 'GET',
         dataType: 'json'
     })
     .done(function(data) {
-        let tableBody = $('#itemList tbody');
+        let tableBody = $('#reportList tbody');
         tableBody.empty();
-        data.forEach(item => {
+        data.forEach(report => {
             tableBody.append(`
                 <tr>
-                    <td>${item.id}</td>
-                    <td>${item.name}</td>
-                    <td>${item.type}</td>
-                    <td>${item.detail}</td>
-                    <td class="edit-btn"><button class="btn btn-info editBtn" data-id="${item.id}">編集</button></td>
+                    <td>${report.created_at}</td>
+                    <td>${report.name}</td>
+                    <td>${report.location}</td>
+                    <td>${report.machine}</td>
+                    <td>${report.fuel}</td>
+                    <td class="edit-btn"><button class="btn btn-info editBtn" data-id="${report.id}">編集</button></td>
                 </tr>
             `);
         });

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', '商品登録')
+@section('title', '日報登録')
 
 @section('content_header')
-    <h1>商品登録</h1>
+    <h1>日報登録</h1>
 @stop
 
 @section('content')
@@ -12,9 +12,9 @@
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
-                       @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                       @endforeach
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
                     </ul>
                 </div>
             @endif
@@ -29,13 +29,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="type">種別</label>
-                            <input type="text" class="form-control" id="type" name="type" placeholder="種別">
+                            <label for="location">場所</label>
+                            <input type="text" class="form-control" id="location" name="location" placeholder="場所">
                         </div>
 
                         <div class="form-group">
-                            <label for="detail">詳細</label>
-                            <input type="text" class="form-control" id="detail" name="detail" placeholder="詳細説明">
+                            <label for="machine">機械</label>
+                            <input type="text" class="form-control" id="machine" name="machine" placeholder="機械">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fuel">燃料使用量</label>
+                            <input type="text" class="form-control" id="fuel" name="fuel" placeholder="燃料使用量">
                         </div>
                     </div>
 

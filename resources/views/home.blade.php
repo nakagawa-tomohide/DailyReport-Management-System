@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>商品管理システム</h1>
+    <h1>日報管理システム</h1>
 @stop
 
 @section('content')

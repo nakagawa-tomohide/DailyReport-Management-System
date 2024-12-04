@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', '商品一覧')
+@section('title', '日報一覧')
 
 @section('head')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content_header')
-    <h1>商品一覧</h1>
+    <h1>日報一覧</h1>
 @stop
 
 @section('content')
@@ -15,34 +15,38 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">商品一覧</h3>
+                    <h3 class="card-title">日報一覧</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">
-                                <a href="{{ url('items/add') }}" class="btn btn-default">商品登録</a>
+                                <a href="{{ url('reports/add') }}" class="btn btn-default">日報登録</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap" id="itemList">
+                    <table class="table table-hover text-nowrap" id="reportList">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>月/日</th>
                                 <th>名前</th>
-                                <th>種別</th>
-                                <th>詳細</th>
+                                <th>場所</th>
+                                <th>機械</th>
+                                <th>燃料使用量</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @foreach ($reports as $report)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->detail }}</td>
-                                    <td class="edit-btn"><button class="btn btn-info editBtn" data-id="{{ $item->id }}">編集</button></td>
-                                    <td class="delete-btn"><button class="btn btn-danger deleteBtn" data-id="{{ $item->id }}">削除</button></td>
+                                    <td>{{ $report->created_at }}</td>
+                                    <td>{{ $report->name }}</td>
+                                    <td>{{ $report->location }}</td>
+                                    <td>{{ $report->machine }}</td>
+                                    <td>{{ $report->fuel }}</td>
+                                    <td>
+                                        <button class="btn btn-info editBtn" data-id="{{ $report->id }}">編集</button>
+                                        <button class="btn btn-danger deleteBtn" data-id="{{ $report->id }}">削除</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -63,18 +67,22 @@
                     <form method="post" id="editForm">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" id="itemId">
+                        <input type="hidden" id="reportId">
                         <div class="mb-3">
-                            <label for="itemName" class="form-label">商品名</label>
-                            <input type="text" class="form-control" id="itemName">
+                            <label for="reportName" class="form-label">名前</label>
+                            <input type="text" class="form-control" id="reportName">
                         </div>
                         <div class="mb-3">
-                            <label for="itemType" class="form-label">種別</label>
-                            <input type="text" class="form-control" id="itemType" >
+                            <label for="reportLocation" class="form-label">場所</label>
+                            <input type="text" class="form-control" id="reportLocation" >
                         </div>
                         <div class="mb-3">
-                            <label for="itemDetail" class="form-label">詳細</label>
-                            <input type="text" class="form-control" id="itemDetail">
+                            <label for="reportMachine" class="form-label">機械</label>
+                            <input type="text" class="form-control" id="reportMachine">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportFuel" class="form-label">燃料使用量</label>
+                            <input type="text" class="form-control" id="reportFuel">
                         </div>
                         <div class="modal-btn">
                             <button type="button" class="btn btn-info" id="saveChanges">保存</button>
