@@ -74,7 +74,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="reportLocation" class="form-label">場所</label>
-                            <input type="text" class="form-control" id="reportLocation" >
+                            <input type="text" class="form-control" id="reportLocation">
                         </div>
                         <div class="mb-3">
                             <label for="reportMachine" class="form-label">機械</label>
