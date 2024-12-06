@@ -47,9 +47,7 @@ $('#saveChanges').on('click', function() {
         }
     })
     .done(function() {
-        alert('更新が完了しました');
         $('#editModal').modal('hide');
-
             // Ajaxでリストを再描写
             fetchItemList();
         })
@@ -97,7 +95,10 @@ function fetchItemList() {
                     <td>${report.location}</td>
                     <td>${report.machine}</td>
                     <td>${report.fuel}</td>
-                    <td class="edit-btn"><button class="btn btn-info editBtn" data-id="${report.id}">編集</button></td>
+                    <td class="edit-delete-btn">
+                        <button class="btn btn-info editBtn" data-id="${report.id}">編集</button>
+                        <button class="btn btn-danger deleteBtn" data-id="${report.id}}">削除</button>
+                    </td>
                 </tr>
             `);
         });
