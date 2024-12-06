@@ -44,8 +44,10 @@
                                     <td>{{ $report->machine }}</td>
                                     <td>{{ $report->fuel }}</td>
                                     <td class="edit-delete-btn">
-                                        <button class="btn btn-info editBtn" data-id="{{ $report->id }}">編集</button>
-                                        <button class="btn btn-danger deleteBtn" data-id="{{ $report->id }}">削除</button>
+                                        @if(Auth::user()->can('view', $report))
+                                            <button class="btn btn-info editBtn" data-id="{{ $report->id }}">編集</button>
+                                            <button class="btn btn-danger deleteBtn" data-id="{{ $report->id }}">削除</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
