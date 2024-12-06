@@ -24,7 +24,7 @@ class ReportController extends Controller
     public function index()
     {
         // 日報一覧取得
-        $reports = Report::all();
+        $reports = Report::latest('id')->take(7)->get();
 
         return view('reports.index', compact('reports'));
     }
