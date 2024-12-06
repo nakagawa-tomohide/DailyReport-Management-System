@@ -38,10 +38,10 @@ class ReportController extends Controller
         if ($request->isMethod('post')) {
             // バリデーション
             $this->validate($request, [
-                'name' => 'required|string|max:100',
+                'name' => 'required|string|max:50',
                 'location' => 'string|max:50',
                 'machine' => 'string|max:50',
-                'fuel' => 'integer|max:50',
+                'fuel' => 'integer|max:1000',
             ]);
 
             // 日報登録
@@ -82,10 +82,10 @@ class ReportController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'name' => 'required|string|max:50',
             'location' => 'string|max:50',
             'machine' => 'string|max:50',
-            'fuel' => 'integer|max:50'
+            'fuel' => 'integer|max:1000'
     ]);
 
         $report = Report::findOrFail($id);
