@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,7 @@ use App\Http\Controllers\ReportController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('reports')->group(function () {
     Route::get('/', [ReportController::class, 'index']);
@@ -31,3 +33,12 @@ Route::prefix('reports')->group(function () {
     Route::get('/fetchReports', [ReportController::class, 'fetchReports']);
     Route::get('/{id}/delete', [ReportController::class, 'delete']);
 });
+
+Route::get('/calendar', function() {
+    return view('calendar');
+});
+
+// イベント登録処理
+Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd']);
+// イベント取得処理
+Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet']);
