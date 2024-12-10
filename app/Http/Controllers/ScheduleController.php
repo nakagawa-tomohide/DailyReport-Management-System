@@ -29,9 +29,37 @@ class ScheduleController extends Controller
         $schedule->event_name = $request->input('event_name');
         $schedule->save();
 
-        return response()->json(['message' => '登録が完了しました']);
+        return response()->json(['id' => $schedule->id]);
     }
 
+    /**
+     * イベントを削除
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function scheduleDelete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer', // 削除対象のイベントIDを必須
+        ]);
+
+        $schedule = Schedule::find($request->id);
+
+        if ($schedule) {
+            $schedule->delete();
+            return response()->json(['message' => '削除が完了しました']);
+        }
+
+        return response()->json(['message' => '削除対象が見つかりません']);
+    }
+
+    /**
+     * イベントを表示
+     *
+     * @param Request $request
+     * @return void
+     */
     public function scheduleGet(Request $request)
     {
         //バリデーション
@@ -48,6 +76,7 @@ class ScheduleController extends Controller
         return Schedule::query()
             ->select(
                 // FullCalendarの形式に合わせる
+                'id',
                 'start_date as start',
                 'end_date as end',
                 'event_name as title'

@@ -24,6 +24,7 @@ $(function(){
                 })
                 .done(function(){
                     calendar.addEvent({
+                        id: response.id,
                         title: eventName,
                         start: info.start,
                         end: info.end,
@@ -35,6 +36,28 @@ $(function(){
                 });
             }
         },
+
+        // イベントクリックで削除
+        eventClick: function (info) {
+            if (confirm(`イベント「${info.event.title}」を削除しますか？`)) {
+                $.ajax({
+                    url: "/schedule-delete",
+                    type: "POST",
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr("content"),
+                        id: info.event.id,
+                    },
+                })
+                .done(function(response) {
+                    info.event.remove();
+                })
+                .fail(function(jqXHR) {
+                    console.log("エラー詳細:", jqXHR.responseJSON);
+                    alert("イベントの取得に失敗しました");
+                });
+            }
+        },
+
         events: function (info, successCallback, failureCallback) {
             // Laravelのイベント取得処理の呼び出し
             $.ajax({
@@ -53,7 +76,7 @@ $(function(){
             .fail(function(jqXHR) {
                 console.error("エラー詳細:", jqXHR.responseJSON);
                 alert("イベントの取得に失敗しました");
-            })
+            });
         }
     });
     calendar.render();

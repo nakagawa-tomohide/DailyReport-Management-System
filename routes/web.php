@@ -40,5 +40,7 @@ Route::get('/calendar', function() {
 
 // イベント登録処理
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd']);
+// イベントの削除
+Route::post('/schedule-delete', [ScheduleController::class, 'scheduleDelete']);
 // イベント取得処理
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet']);
