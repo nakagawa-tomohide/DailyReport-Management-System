@@ -11,6 +11,7 @@ $(function(){
             // 入力ダイヤログ
             const eventName = prompt("イベントを入力してください");
 
+            // イベント登録処理
             if(eventName) {
                 $.ajax({
                     url: "/schedule-add",
@@ -22,7 +23,7 @@ $(function(){
                         event_name: eventName,
                     },
                 })
-                .done(function(){
+                .done(function(response){
                     calendar.addEvent({
                         id: response.id,
                         title: eventName,
@@ -48,7 +49,7 @@ $(function(){
                         id: info.event.id,
                     },
                 })
-                .done(function(response) {
+                .done(function() {
                     info.event.remove();
                 })
                 .fail(function(jqXHR) {
@@ -58,8 +59,8 @@ $(function(){
             }
         },
 
-        events: function (info, successCallback, failureCallback) {
-            // Laravelのイベント取得処理の呼び出し
+        // イベント取得処理の呼び出し
+        events: function (info, successCallback) {
             $.ajax({
                 url: "/schedule-get",
                 type: "POST",
