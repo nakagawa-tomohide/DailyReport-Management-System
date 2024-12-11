@@ -293,7 +293,13 @@ return [
         [
             'text' => '日報一覧',
             'url'  => 'reports',
-            'icon' => 'fas fa-gamepad',
+            'icon' => 'fa fa-tree',
+        ],
+
+        [
+            'text' => 'スケジュール',
+            'url' => 'calendar',
+            'icon' => 'fa fa-calendar',
         ],
 
         // AdminLTEデフォルト
