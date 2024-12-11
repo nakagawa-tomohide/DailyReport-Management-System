@@ -32,7 +32,7 @@
                                 <th>名前</th>
                                 <th>場所</th>
                                 <th>機械</th>
-                                <th>燃料使用量</th>
+                                <th>燃料使用量（L）</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,7 +83,7 @@
                             <input type="text" class="form-control" id="reportMachine">
                         </div>
                         <div class="mb-3">
-                            <label for="reportFuel" class="form-label">燃料使用量</label>
+                            <label for="reportFuel" class="form-label">燃料使用量（L）</label>
                             <input type="text" class="form-control" id="reportFuel">
                         </div>
                         <div class="modal-btn">
