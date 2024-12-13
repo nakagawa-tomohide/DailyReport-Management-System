@@ -12,7 +12,7 @@
 
 @section('content')
 <body>
-    <div style="width: 50%;margin: auto">
+    <div style="width: 60%;margin: auto">
         <div id='calendar'></div>
     </div>
 </body>
