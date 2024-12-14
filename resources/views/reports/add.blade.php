@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <div class="row">
+    <div class="row add-wrapper">
         <div class="col-md-10">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -54,6 +54,7 @@
 @stop
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 @stop
 
 @section('js')
