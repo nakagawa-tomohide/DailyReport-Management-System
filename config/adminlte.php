@@ -302,6 +302,13 @@ return [
             'icon' => 'fa fa-calendar',
         ],
 
+        [
+            'text' => '',
+            'url' => 'myPage',
+            'icon' => 'fa fa-user-circle',
+            'topnav_right' => true,
+        ],
+
         // AdminLTEデフォルト
         /*
         // Navbar items:

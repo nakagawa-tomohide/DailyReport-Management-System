@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +46,6 @@ Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd']);
 Route::post('/schedule-delete', [ScheduleController::class, 'scheduleDelete']);
 // イベント取得処理
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet']);
+
+Route::get('/myPage', [UserController::class, 'myPage'])->name('myPage');
+Route::put('/myEdit', [UserController::class, 'myEdit'])->name('myEdit');
