@@ -38,8 +38,10 @@ class ReportController extends Controller
         if ($request->isMethod('post')) {
             // バリデーション
             $this->validate($request, [
+                'date' => 'required|string|max:50',
                 'name' => 'required|string|max:50',
                 'location' => 'string|max:50',
+                'workDescription' => 'string|max:50',
                 'machine' => 'string|max:50',
                 'fuel' => 'integer|max:1000',
             ]);
@@ -47,8 +49,10 @@ class ReportController extends Controller
             // 日報登録
             Report::create([
                 'user_id' => Auth::user()->id,
+                'date' => $request->date,
                 'name' => $request->name,
                 'location' => $request->location,
+                'workDescription' => $request->workDescription,
                 'machine' => $request->machine,
                 'fuel' => $request->fuel,
             ]);
@@ -82,8 +86,10 @@ class ReportController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'date' => 'required|string|max:50',
             'name' => 'required|string|max:50',
             'location' => 'string|max:50',
+            'workDescription' => 'string|max:50',
             'machine' => 'string|max:50',
             'fuel' => 'integer|max:1000'
     ]);
@@ -91,8 +97,10 @@ class ReportController extends Controller
         $report = Report::findOrFail($id);
         $report->update([
             'user_id' => Auth::user()->id,
+            'date' => $request->input('date'),
             'name' => $request->input('name'),
             'location' => $request->input('location'),
+            'workDescription' => $request->input('workDescription'),
             'machine' => $request->input('machine'),
             'fuel' => $request->input('fuel'),
         ]);

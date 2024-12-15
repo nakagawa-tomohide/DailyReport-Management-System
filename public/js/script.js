@@ -11,8 +11,10 @@ $(document).on('click', '.editBtn', function () {
     .done(function(data) { // dataにはJSONが入っている
         // モーダルにデータをセット
         $('#reportId').val(data.id);
+        $('#reportDate').val(data.date);
         $('#reportName').val(data.name);
         $('#reportLocation').val(data.location);
+        $('#reportWorkDescription').val(data.workDescription);
         $('#reportMachine').val(data.machine);
         $('#reportFuel').val(data.fuel);
 
@@ -27,8 +29,10 @@ $(document).on('click', '.editBtn', function () {
 // 編集内容を保存
 $('#saveChanges').on('click', function() {
     const reportId = $('#reportId').val();
+    const reportDate = $('#reportDate').val();
     const reportName = $('#reportName').val();
     const reportLocation = $('#reportLocation').val();
+    const reportWorkDescription = $('#reportWorkDescription').val();
     const reportMachine = $('#reportMachine').val();
     const reportFuel = $('#reportFuel').val();
 
@@ -40,8 +44,10 @@ $('#saveChanges').on('click', function() {
         dataType: 'json',
         data: {
             _token: $('meta[name="csrf-token"]').attr('content'), // CSRFトークン
+            date: reportDate,
             name: reportName,
             location: reportLocation,
+            workDescription: reportWorkDescription,
             machine: reportMachine,
             fuel: reportFuel,
         }
@@ -57,7 +63,7 @@ $('#saveChanges').on('click', function() {
     });
 });
 
-// 商品を削除
+// 日報を削除
 $(document).on('click', '.deleteBtn', function(){
     const reportId = $(this).data('id');
 
@@ -90,9 +96,10 @@ function fetchItemList() {
         data.forEach(report => {
             tableBody.append(`
                 <tr>
-                    <td>${report.created_at}</td>
+                    <td>${report.date}</td>
                     <td>${report.name}</td>
                     <td>${report.location}</td>
+                    <td>${report.workDescription}</td>
                     <td>${report.machine}</td>
                     <td>${report.fuel}</td>
                     <td class="edit-delete-btn">

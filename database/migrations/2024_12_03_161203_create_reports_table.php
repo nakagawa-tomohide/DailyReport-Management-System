@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
+            $table->string('date')->index();
             $table->string('name')->index();
             $table->string('location')->nullable();
+            $table->string('workDescription')->nullable();
             $table->string('machine')->nullable();
             $table->integer('fuel')->nullable();
             $table->timestamps();
+            $table->softDeletes()->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
         });

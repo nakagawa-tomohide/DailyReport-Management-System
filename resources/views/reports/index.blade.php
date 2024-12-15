@@ -28,9 +28,10 @@
                     <table class="table table-hover text-nowrap" id="reportList">
                         <thead>
                             <tr>
-                                <th>月/日</th>
+                                <th>日付</th>
                                 <th>名前</th>
                                 <th>場所</th>
+                                <th>作業内容</th>
                                 <th>機械</th>
                                 <th>燃料使用量（L）</th>
                             </tr>
@@ -38,9 +39,10 @@
                         <tbody>
                             @foreach ($reports as $report)
                                 <tr>
-                                    <td>{{ $report->created_at }}</td>
+                                    <td>{{ $report->date }}</td>
                                     <td>{{ $report->name }}</td>
                                     <td>{{ $report->location }}</td>
+                                    <td>{{ $report->workDescription }}</td>
                                     <td>{{ $report->machine }}</td>
                                     <td>{{ $report->fuel }}</td>
                                     <td class="edit-delete-btn">
@@ -71,12 +73,20 @@
                         @method('PUT')
                         <input type="hidden" id="reportId">
                         <div class="mb-3">
+                            <label for="reportDate" class="form-label">日付</label>
+                            <input type="text" class="form-control" id="reportDate">
+                        </div>
+                        <div class="mb-3">
                             <label for="reportName" class="form-label">名前</label>
                             <input type="text" class="form-control" id="reportName">
                         </div>
                         <div class="mb-3">
                             <label for="reportLocation" class="form-label">場所</label>
                             <input type="text" class="form-control" id="reportLocation">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportWorkDescription" class="form-label">作業内容</label>
+                            <input type="text" class="form-control" id="reportWorkDescription">
                         </div>
                         <div class="mb-3">
                             <label for="reportMachine" class="form-label">機械</label>

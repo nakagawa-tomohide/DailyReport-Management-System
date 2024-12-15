@@ -24,6 +24,11 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="date">日付</label>
+                            <input type="text" class="form-control" id="date" name="date" placeholder="日付">
+                        </div>
+
+                        <div class="form-group">
                             <label for="name">名前</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="名前">
                         </div>
@@ -31,6 +36,11 @@
                         <div class="form-group">
                             <label for="location">場所</label>
                             <input type="text" class="form-control" id="location" name="location" placeholder="場所">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="workDescription">作業内容</label>
+                            <input type="text" class="form-control" id="workDescription" name="workDescription" placeholder="作業内容">
                         </div>
 
                         <div class="form-group">
