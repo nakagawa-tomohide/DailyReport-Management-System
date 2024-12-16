@@ -94,6 +94,14 @@ function fetchItemList() {
         let tableBody = $('#reportList tbody');
         tableBody.empty();
         data.forEach(report => {
+
+            let editDeleteBtns = '';
+            if (report.canEdit) {
+                editDeleteBtns = `
+                    <button class="btn btn-info editBtn" data-id="${report.id}">編集</button>
+                    <button class="btn btn-danger deleteBtn" data-id="${report.id}">削除</button>
+                `;
+            }
             tableBody.append(`
                 <tr>
                     <td>${report.date}</td>
@@ -103,8 +111,7 @@ function fetchItemList() {
                     <td>${report.machine}</td>
                     <td>${report.fuel}</td>
                     <td class="edit-delete-btn">
-                        <button class="btn btn-info editBtn" data-id="${report.id}">編集</button>
-                        <button class="btn btn-danger deleteBtn" data-id="${report.id}}">削除</button>
+                        ${editDeleteBtns}
                     </td>
                 </tr>
             `);

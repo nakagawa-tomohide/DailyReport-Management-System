@@ -115,8 +115,19 @@ class ReportController extends Controller
      */
     public function fetchReports()
     {
-        $reports = Report::all();
-        return response()->json($reports);
+        $reports = Report::latest('id')->take(7)->get();
+        return response()->json($reports->map(function ($report) {
+            return [
+                'id' => $report->id,
+                'date' => $report->date,
+                'name' => $report->name,
+                'location' => $report->location,
+                'workDescription' => $report->workDescription,
+                'machine' => $report->machine,
+                'fuel' => $report->fuel,
+                'canEdit' => Auth::user()->can('view', $report),
+            ];
+        }));
     }
 
     /**
