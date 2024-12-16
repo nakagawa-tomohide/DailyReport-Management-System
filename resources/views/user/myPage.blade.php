@@ -20,6 +20,12 @@
             @endif
 
             <div class="card card-primary">
+                @if (session('message'))
+                <div class="alert alert-info" role="alert">
+                    {{ session('message') }}
+                </div>
+                @endif
+
                 <form action="{{ route('myEdit') }}" method="POST">
                     @csrf
                     @method('put')
@@ -31,7 +37,7 @@
 
                         <div class="form-group">
                             <label for="location">メールアドレス</label>
-                            <input type="text" class="form-control" id="location" name="location" value="{{ old('email', $user->email) }}">
+                            <input type="text" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}">
                         </div>
 
                     <div class="card-footer">
