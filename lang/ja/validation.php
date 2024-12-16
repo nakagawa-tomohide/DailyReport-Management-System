@@ -273,5 +273,10 @@ return [
         'winner'                   => 'winner',
         'work'                     => 'work',
         'year'                     => '年',
+
+        'location'                 => '作業場所',
+        'workDescription'         => '作業内容',
+        'machine'                  => '使用機械',
+        'fuel'                     => '使用燃料',
     ],
 ];
