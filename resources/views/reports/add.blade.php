@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="location">場所</label>
+                            <label for="location">作業場所</label>
                             <input type="text" class="form-control" id="location" name="location" placeholder="場所">
                         </div>
 
@@ -44,12 +44,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="machine">機械</label>
+                            <label for="machine">使用機械</label>
                             <input type="text" class="form-control" id="machine" name="machine" placeholder="機械">
                         </div>
 
                         <div class="form-group">
-                            <label for="fuel">燃料使用量</label>
+                            <label for="fuel">燃料使用量（L）</label>
                             <input type="text" class="form-control" id="fuel" name="fuel" placeholder="燃料使用量">
                         </div>
                     </div>

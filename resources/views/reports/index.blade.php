@@ -30,9 +30,9 @@
                             <tr>
                                 <th>日付</th>
                                 <th>名前</th>
-                                <th>場所</th>
+                                <th>作業場所</th>
                                 <th>作業内容</th>
-                                <th>機械</th>
+                                <th>使用機械</th>
                                 <th>燃料使用量（L）</th>
                             </tr>
                         </thead>
@@ -81,7 +81,7 @@
                             <input type="text" class="form-control" id="reportName">
                         </div>
                         <div class="mb-3">
-                            <label for="reportLocation" class="form-label">場所</label>
+                            <label for="reportLocation" class="form-label">作業場所</label>
                             <input type="text" class="form-control" id="reportLocation">
                         </div>
                         <div class="mb-3">
@@ -89,7 +89,7 @@
                             <input type="text" class="form-control" id="reportWorkDescription">
                         </div>
                         <div class="mb-3">
-                            <label for="reportMachine" class="form-label">機械</label>
+                            <label for="reportMachine" class="form-label">使用機械</label>
                             <input type="text" class="form-control" id="reportMachine">
                         </div>
                         <div class="mb-3">
