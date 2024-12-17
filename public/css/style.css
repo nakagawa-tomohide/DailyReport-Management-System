@@ -11,6 +11,10 @@ button{
     text-align: right;
 }
 
+.error-message {
+    color: red;
+}
+
 /* マイページ */
 a {
     color: gray;

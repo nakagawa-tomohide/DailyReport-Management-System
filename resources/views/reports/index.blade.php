@@ -75,26 +75,32 @@
                         <div class="mb-3">
                             <label for="reportDate" class="form-label">日付</label>
                             <input type="text" class="form-control" id="reportDate">
+                            <div id="error-date" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportName" class="form-label">名前</label>
                             <input type="text" class="form-control" id="reportName">
+                            <div id="error-name" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportLocation" class="form-label">作業場所</label>
                             <input type="text" class="form-control" id="reportLocation">
+                            <div id="error-location" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportWorkDescription" class="form-label">作業内容</label>
                             <input type="text" class="form-control" id="reportWorkDescription">
+                            <div id="error-workDescription" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportMachine" class="form-label">使用機械</label>
                             <input type="text" class="form-control" id="reportMachine">
+                            <div id="error-machine" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportFuel" class="form-label">燃料使用量（L）</label>
                             <input type="text" class="form-control" id="reportFuel">
+                            <div id="error-fuel" class="error-message"></div>
                         </div>
                         <div class="modal-btn">
                             <button type="button" class="btn btn-info" id="saveChanges">保存</button>

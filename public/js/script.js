@@ -1,5 +1,6 @@
 // 商品データをモーダルに表示
 $(document).on('click', '.editBtn', function () {
+    $('#editModal .error-message').text('');
     const reportId = $(this).data('id');
 
     // 商品データを取得
@@ -58,8 +59,17 @@ $('#saveChanges').on('click', function() {
             fetchItemList();
         })
     .fail(function (xhr, status, error) {
-        console.log(`Error: ${status}, ${error}`);
-        alert('更新に失敗しました');
+        console.log(`Error: ${status}, ${error}, ${xhr.responseText}`);
+
+        if (xhr.status === 422) {
+            // バリデーションエラーの場合
+            const errors = JSON.parse(xhr.responseText).errors;
+            // エラー表示用の関数を呼び出し
+            displayValidationErrors(errors);
+        } else {
+            alert('更新に失敗しました');
+            $('#editModal').modal('hide');
+        }
     });
 });
 
@@ -122,3 +132,18 @@ function fetchItemList() {
         alert('リストの取得に失敗しました');
     })
 };
+
+function displayValidationErrors(errors) {
+    // モーダル内の既存のエラーメッセージをクリア
+    $('#editModal .error-message').text('');
+
+    // 各フィールドに対応するエラーメッセージを表示
+    for (const field in errors) {
+        const fieldErrors = errors[field]; // エラーメッセージの配列
+        const errorElement = $(`#error-${field}`); // フィールドに対応するエラー要素
+
+        if (errorElement.length > 0) {
+            errorElement.text(fieldErrors.join(', ')); // エラーメッセージを表示
+        }
+    }
+}
