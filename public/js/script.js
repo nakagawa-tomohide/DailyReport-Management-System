@@ -1,9 +1,74 @@
-// 商品データをモーダルに表示
+// 登録モーダルを表示
+$(document).on('click', '.addBtn', function() {
+    $('#addModal .error-message').text('');
+    $('#addModal').modal('show');
+});
+
+// モーダルが閉じられたときにフォーカスを外す
+$(document).on('hidden.bs.modal', function() {
+    if ($(document.activeElement).length) {
+        $(document.addElement).get(0)?.blur;
+    }
+});
+
+// 日報を登録
+$('#add').on('click', function() {
+    const reportDate = $('#addReportDate').val();
+    const reportName = $('#addReportName').val();
+    const reportLocation = $('#addReportLocation').val();
+    const reportWorkDescription = $('#addReportWorkDescription').val();
+    const reportMachine = $('#addReportMachine').val();
+    const reportFuel = $('#addReportFuel').val();
+
+    console.log({
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        date: reportDate,
+        name: reportName,
+        location: reportLocation,
+        workDescription: reportWorkDescription,
+        machine: reportMachine,
+        fuel: reportFuel,
+    });
+
+    $.ajax ({
+        url: '/reports/add',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            date: reportDate,
+            name: reportName,
+            location: reportLocation,
+            workDescription: reportWorkDescription,
+            machine: reportMachine,
+            fuel: reportFuel,
+        }
+    })
+    .done(function() {
+        $('#addModal').modal('hide');
+
+        fetchItemList();
+    })
+    .fail(function(xhr, status, error) {
+        console.log(`Error: ${status}, ${error}, ${xhr.responseText}`)
+
+        if (xhr.status === 422) {
+            // バリデーションエラーの場合
+            const errors = JSON.parse(xhr.responseText).errors;
+            displayValidationErrors('#addModal', errors);
+        } else {
+            alert('登録に失敗しました');
+            $('#editModal').modal('hide');
+        }
+    })
+})
+
+// 日報データをモーダルに表示
 $(document).on('click', '.editBtn', function () {
     $('#editModal .error-message').text('');
     const reportId = $(this).data('id');
 
-    // 商品データを取得
+    // 日報データを取得
     $.ajax({
         url: `/reports/${reportId}/edit`, //ルートを適宣変更
         type: 'GET',
@@ -21,10 +86,17 @@ $(document).on('click', '.editBtn', function () {
 
         $('#editModal').modal('show');
     })
-    .fail(function (xhr, status, error) {
+    .fail(function (status, error) {
         console.log(`Error: ${status}, ${error}`);
         alert('データの取得に失敗しました');
     });
+});
+
+// モーダルが閉じられたときにフォーカスを外す
+$(document).on('hidden.bs.modal', function() {
+    if ($(document.activeElement).length) {
+        $(document.addElement).get(0)?.blur;
+    }
 });
 
 // 編集内容を保存
@@ -65,7 +137,7 @@ $('#saveChanges').on('click', function() {
             // バリデーションエラーの場合
             const errors = JSON.parse(xhr.responseText).errors;
             // エラー表示用の関数を呼び出し
-            displayValidationErrors(errors);
+            displayValidationErrors('#editModal', errors);
         } else {
             alert('更新に失敗しました');
             $('#editModal').modal('hide');
@@ -87,7 +159,7 @@ $(document).on('click', '.deleteBtn', function(){
 
         fetchItemList();
     })
-    .fail(function(xhr, status, error){
+    .fail(function(status, error){
         console.log(`Error: ${status}, ${error}`);
         alert('削除に失敗しました');
     });
@@ -127,20 +199,21 @@ function fetchItemList() {
             `);
         });
     })
-    .fail(function(xhr, status, error) {
+    .fail(function(status, error) {
         console.log(`Error: ${status}, ${error}`)
         alert('リストの取得に失敗しました');
     })
 };
 
-function displayValidationErrors(errors) {
+// モーダルにエラーメッセージを表示
+function displayValidationErrors(modalSelector, errors) {
     // モーダル内の既存のエラーメッセージをクリア
-    $('#editModal .error-message').text('');
+    $(`${modalSelector} .error-message`).text('');
 
     // 各フィールドに対応するエラーメッセージを表示
     for (const field in errors) {
         const fieldErrors = errors[field]; // エラーメッセージの配列
-        const errorElement = $(`#error-${field}`); // フィールドに対応するエラー要素
+        const errorElement = $(`${modalSelector} #error-${field}`); // フィールドに対応するエラー要素
 
         if (errorElement.length > 0) {
             errorElement.text(fieldErrors.join(', ')); // エラーメッセージを表示

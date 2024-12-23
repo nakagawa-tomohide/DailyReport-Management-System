@@ -41,14 +41,15 @@ class ReportController extends Controller
     {
         // POSTリクエストのとき
         if ($request->isMethod('post')) {
+            \Log::info($request->all());
             // バリデーション
             $this->validate($request, [
                 'date' => 'required|string|max:50',
                 'name' => 'required|string|max:50',
-                'location' => 'string|max:50',
-                'workDescription' => 'string|max:50',
-                'machine' => 'string|max:50',
-                'fuel' => 'integer|max:1000',
+                'location' => 'required|string|max:50',
+                'workDescription' => 'required|string|max:50',
+                'machine' => 'required|string|max:50',
+                'fuel' => 'required|integer|max:1000',
             ]);
 
             // 日報登録
@@ -62,7 +63,7 @@ class ReportController extends Controller
                 'fuel' => $request->fuel,
             ]);
 
-            return redirect('/reports');
+            return response()->json(['message' => '登録が完了しました']);
         }
 
         return view('reports.add');
@@ -93,10 +94,10 @@ class ReportController extends Controller
         $request->validate([
             'date' => 'required|string|max:50',
             'name' => 'required|string|max:50',
-            'location' => 'string|max:50',
-            'workDescription' => 'string|max:50',
-            'machine' => 'string|max:50',
-            'fuel' => 'integer|max:1000'
+            'location' => 'required|string|max:50',
+            'workDescription' => 'required|string|max:50',
+            'machine' => 'required|string|max:50',
+            'fuel' => 'required|integer|max:1000'
     ]);
 
         $report = Report::findOrFail($id);

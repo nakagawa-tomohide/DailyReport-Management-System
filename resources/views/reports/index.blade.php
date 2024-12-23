@@ -19,7 +19,7 @@
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">
-                                <a href="{{ url('reports/add') }}" class="btn btn-default">日報登録</a>
+                                <a class="btn btn-default addBtn">日報登録</a>
                             </div>
                         </div>
                     </div>
@@ -59,13 +59,13 @@
             </div>
         </div>
     </div>
-    <!-- モーダル画面 -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden>
+    <!-- 編集モーダル画面 -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">編集</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="editForm">
@@ -104,6 +104,56 @@
                         </div>
                         <div class="modal-btn">
                             <button type="button" class="btn btn-info" id="saveChanges">保存</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 登録モーダル -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">登録</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="addForm">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="reportDate" class="form-label">日付</label>
+                            <input type="text" class="form-control" id="addReportDate">
+                            <div id="error-date" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportName" class="form-label">名前</label>
+                            <input type="text" class="form-control" id="addReportName">
+                            <div id="error-name" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportLocation" class="form-label">作業場所</label>
+                            <input type="text" class="form-control" id="addReportLocation">
+                            <div id="error-location" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportWorkDescription" class="form-label">作業内容</label>
+                            <input type="text" class="form-control" id="addReportWorkDescription">
+                            <div id="error-workDescription" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportMachine" class="form-label">使用機械</label>
+                            <input type="text" class="form-control" id="addReportMachine">
+                            <div id="error-machine" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportFuel" class="form-label">燃料使用量（L）</label>
+                            <input type="text" class="form-control" id="addReportFuel">
+                            <div id="error-fuel" class="error-message"></div>
+                        </div>
+                        <div class="modal-btn">
+                            <button type="button" class="btn btn-info" id="add">登録</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
                         </div>
                     </form>
