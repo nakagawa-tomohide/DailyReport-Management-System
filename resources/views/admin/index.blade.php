@@ -1,0 +1,1 @@
+@extends('common.adminlte.page')

@@ -5,6 +5,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AuthController;
 
 
 /*
@@ -49,3 +50,16 @@ Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet']);
 
 Route::get('/myPage', [UserController::class, 'myPage'])->name('myPage');
 Route::put('/myEdit', [UserController::class, 'myEdit'])->name('myEdit');
+
+// 管理者用Route
+Route::prefix('admin')->group(function () {
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('home', function () {
+            return view('admin.home');
+        })->name('admin.home');
+    });
+});
