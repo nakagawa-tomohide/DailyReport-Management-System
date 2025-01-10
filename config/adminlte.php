@@ -290,6 +290,7 @@ return [
     */
 
     'menu' => [
+        // 一般ユーザーメニュー
         [
             'text' => '日報一覧',
             'url'  => 'reports',
@@ -312,6 +313,20 @@ return [
             'can' => 'isUser',
         ],
 
+        // 管理者メニュー
+        [
+            'text' => '日報一覧',
+            'url' => 'admin/report',
+            'icon' => 'fa fa-tree',
+            'can' => 'isAdmin',
+        ],
+
+        [
+            'text' => 'スケジュール',
+            'url' => 'admin/calendar',
+            'icon' => 'fa fa-calendar',
+            'can' => 'isAdmin',
+        ],
     ],
 
     /*
