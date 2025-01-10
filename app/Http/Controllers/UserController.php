@@ -18,7 +18,7 @@ class UserController extends Controller
         // ログイン中のユーザーを取得
         $user = Auth::user();
 
-        return view('User.myPage', compact('user'));
+        return view('user.myPage', compact('user'));
     }
 
     /**
