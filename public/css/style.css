@@ -23,3 +23,34 @@ a {
 .password-reset {
     text-align: right;
 }
+
+/* 管理者用検索機能 */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4vh;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.card-title {
+    margin-right: 20px;
+}
+
+.search-form {
+    display: flex;
+}
+
+.search-form label {
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.search-form input {
+    margin-right: 10px;
+}
+
+.search-btn {
+    margin-right: 10px;
+}

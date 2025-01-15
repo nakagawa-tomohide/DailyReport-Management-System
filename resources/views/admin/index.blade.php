@@ -15,13 +15,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">日報一覧</h3>
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-append">
-                                <a class="btn btn-default addBtn">日報登録</a>
-                            </div>
-                        </div>
+                    <div class="header-content">
+                        <h3 class="card-title">日報一覧</h3>
+                        <form action="{{ route('report.search') }}" method="GET" class="search-form">
+                            <label for="start_date">開始日:</label>
+                            <input type="date" id="start_date" name="start_date" value="{{ request('start_date') }}">
+
+                            <label for="end_date">終了日:</label>
+                            <input type="date" id="end_date" name="end_date" value="{{ request('end_date') }}">
+                            <button type="submit" class="btn btn-default search-btn">検索</button>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
