@@ -65,6 +65,7 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/report', [AdminReportController::class, 'index'])->name('admin.index');
         Route::get('/search', [AdminReportController::class, 'search'])->name('report.search');
+        Route::get('/export-search-results', [AdminReportController::class, 'exportSearchResults'])->name('export.search');
 
         Route::get('/calendar', function() {
             return view('calendar');

@@ -25,6 +25,11 @@
                             <input type="date" id="end_date" name="end_date" value="{{ request('end_date') }}">
                             <button type="submit" class="btn btn-default search-btn">検索</button>
                         </form>
+                        <form action="{{ route('export.search') }}" method="GET">
+                            <input type="hidden" name="start_date" value="{{ request('start_date') }}">
+                            <input type="hidden" name="end_date" value="{{ request('end_date') }}">
+                            <button type="submit" class="btn btn-default">Excelで出力</button>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
