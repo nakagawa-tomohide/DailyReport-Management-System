@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'ダッシュボード')
 
 @section('content_header')
-    <h1>日報管理システム</h1>
+    <h1>LOGRe</h1>
 @stop
 
 @section('content')
