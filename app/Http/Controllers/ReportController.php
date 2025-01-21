@@ -25,11 +25,7 @@ class ReportController extends Controller
     public function index()
     {
         // 日報一覧取得
-        $startOfMonth = Carbon::now()->startOfMonth();
-        $endOfMonth = Carbon::now()->endOfMonth();
-        $reports = Report::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $reports = Report::orderBy('created_at', 'desc')->paginate(10);
 
         return view('reports.index', compact('reports'));
     }

@@ -58,6 +58,7 @@
                 </div>
             </div>
         </div>
+        {{ $reports->links() }}
     </div>
     <!-- 編集モーダル画面 -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

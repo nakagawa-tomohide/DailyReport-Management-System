@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
+        {{ $reports->links() }}
     </div>
 @stop
 

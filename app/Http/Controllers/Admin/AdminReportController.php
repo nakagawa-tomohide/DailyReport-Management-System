@@ -18,7 +18,7 @@ class AdminReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::all();
+        $reports = Report::orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.index', compact('reports'));
     }
@@ -42,11 +42,17 @@ class AdminReportController extends Controller
             $query->whereDate('created_at', '<=', $request->end_date);
         }
 
-        $reports = $query->get();
+        $reports = $query->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.index', compact('reports'));
     }
 
+    /**
+     * 検索結果をExcelで出力
+     *
+     * @param Request $request
+     * @return void
+     */
     public function exportSearchResults(Request $request)
     {
         $query = Report::query();
