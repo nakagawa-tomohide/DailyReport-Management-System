@@ -35,14 +35,14 @@ class AdminReportController extends Controller
 
         // 開始日と終了日の条件を追加
         if ($request->filled('start_date')) {
-            $query->whereDate('created_at', '>=', $request->start_date);
+            $query->whereDate('date', '>=', $request->start_date);
         }
 
         if ($request->filled('end_date')) {
-            $query->whereDate('created_at', '<=', $request->end_date);
+            $query->whereDate('date', '<=', $request->end_date);
         }
 
-        $reports = $query->orderBy('created_at', 'desc')->paginate(10);
+        $reports = $query->orderBy('date', 'desc')->paginate(10);
 
         return view('admin.index', compact('reports'));
     }
