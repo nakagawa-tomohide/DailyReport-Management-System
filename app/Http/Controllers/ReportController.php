@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Report;
@@ -25,7 +24,7 @@ class ReportController extends Controller
     public function index()
     {
         // 日報一覧取得
-        $reports = Report::orderBy('created_at', 'desc')->paginate(10);
+        $reports = Report::orderBy('date', 'desc')->paginate(10);
 
         return view('reports.index', compact('reports'));
     }
@@ -117,11 +116,7 @@ class ReportController extends Controller
      */
     public function fetchReports()
     {
-        $startOfMonth = Carbon::now()->startOfMonth();
-        $endOfMonth = Carbon::now()->endOfMonth();
-        $reports = Report::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $reports = Report::orderBy('date', 'desc')->paginate(10);
 
         return response()->json($reports->map(function ($report) {
             return [
