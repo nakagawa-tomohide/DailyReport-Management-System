@@ -130,7 +130,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="reportName" class="form-label">名前</label>
-                            <input type="text" class="form-control" id="addReportName">
+                            <input type="text" class="form-control" id="addReportName" value="{{ Auth::user()->name }}">
                             <div id="error-name" class="error-message"></div>
                         </div>
                         <div class="mb-3">
