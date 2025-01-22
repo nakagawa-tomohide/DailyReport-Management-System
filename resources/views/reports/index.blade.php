@@ -125,7 +125,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="reportDate" class="form-label">日付</label>
-                            <input type="text" class="form-control" id="addReportDate">
+                            <input type="date" max="9999-12-31" class="form-control" id="addReportDate">
                             <div id="error-date" class="error-message"></div>
                         </div>
                         <div class="mb-3">
