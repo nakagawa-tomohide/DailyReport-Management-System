@@ -39,7 +39,9 @@ class ReportController extends Controller
             \Log::info($request->all());
             // バリデーション
             $this->validate($request, [
-                'date' => 'required|string|max:50',
+                'date' => 'required|date|date_format:Y-m-d',
+                'start_time' => 'required|date_format:H:i',
+                'end_time' => 'required|date_format:H:i|after_or_equal:start_time',
                 'name' => 'required|string|max:50',
                 'location' => 'required|string|max:50',
                 'workDescription' => 'required|string|max:50',
@@ -51,6 +53,8 @@ class ReportController extends Controller
             Report::create([
                 'user_id' => Auth::user()->id,
                 'date' => $request->date,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
                 'name' => $request->name,
                 'location' => $request->location,
                 'workDescription' => $request->workDescription,
@@ -87,18 +91,22 @@ class ReportController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'date' => 'required|string|max:50',
-            'name' => 'required|string|max:50',
-            'location' => 'required|string|max:50',
-            'workDescription' => 'required|string|max:50',
-            'machine' => 'required|string|max:50',
-            'fuel' => 'required|integer|max:1000'
+            'date' => 'required|date|date_format:Y-m-d',
+                'start_time' => 'required|date_format:H:i',
+                'end_time' => 'required|date_format:H:i|after_or_equal:start_time',
+                'name' => 'required|string|max:50',
+                'location' => 'required|string|max:50',
+                'workDescription' => 'required|string|max:50',
+                'machine' => 'required|string|max:50',
+                'fuel' => 'required|integer|max:1000',
     ]);
 
         $report = Report::findOrFail($id);
         $report->update([
             'user_id' => Auth::user()->id,
             'date' => $request->input('date'),
+            'startTime' => $request->input('startTime'),
+            'endTime' => $request->input('endTime'),
             'name' => $request->input('name'),
             'location' => $request->input('location'),
             'workDescription' => $request->input('workDescription'),
@@ -122,6 +130,8 @@ class ReportController extends Controller
             return [
                 'id' => $report->id,
                 'date' => $report->date,
+                'startTime' => $report->start_time,
+                'endTime' => $report->end_time,
                 'name' => $report->name,
                 'location' => $report->location,
                 'workDescription' => $report->workDescription,

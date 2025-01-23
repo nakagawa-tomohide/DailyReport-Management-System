@@ -14,6 +14,8 @@ $(document).on('hidden.bs.modal', function() {
 // 日報を登録
 $('#add').on('click', function() {
     const reportDate = $('#addReportDate').val();
+    const reportStartTime = $('#addReportStartTime').val();
+    const reportEndTime = $('#addReportEndTime').val();
     const reportName = $('#addReportName').val();
     const reportLocation = $('#addReportLocation').val();
     const reportWorkDescription = $('#addReportWorkDescription').val();
@@ -23,6 +25,8 @@ $('#add').on('click', function() {
     console.log({
         _token: $('meta[name="csrf-token"]').attr('content'),
         date: reportDate,
+        start_time: reportStartTime,
+        end_time: reportEndTime,
         name: reportName,
         location: reportLocation,
         workDescription: reportWorkDescription,
@@ -37,6 +41,8 @@ $('#add').on('click', function() {
         data: {
             _token: $('meta[name="csrf-token"]').attr('content'),
             date: reportDate,
+            start_time: reportStartTime,
+            end_time: reportEndTime,
             name: reportName,
             location: reportLocation,
             workDescription: reportWorkDescription,
@@ -78,6 +84,8 @@ $(document).on('click', '.editBtn', function () {
         // モーダルにデータをセット
         $('#reportId').val(data.id);
         $('#reportDate').val(data.date);
+        $('#reportStartTime').val(data.start_time);
+        $('#reportEndTime').val(data.end_time);
         $('#reportName').val(data.name);
         $('#reportLocation').val(data.location);
         $('#reportWorkDescription').val(data.workDescription);
@@ -103,6 +111,8 @@ $(document).on('hidden.bs.modal', function() {
 $('#saveChanges').on('click', function() {
     const reportId = $('#reportId').val();
     const reportDate = $('#reportDate').val();
+    const reportStartTime = $('#reportStartTime').val();
+    const reportEndTime = $('#reportEndTime').val();
     const reportName = $('#reportName').val();
     const reportLocation = $('#reportLocation').val();
     const reportWorkDescription = $('#reportWorkDescription').val();
@@ -118,6 +128,8 @@ $('#saveChanges').on('click', function() {
         data: {
             _token: $('meta[name="csrf-token"]').attr('content'), // CSRFトークン
             date: reportDate,
+            start_time: reportStartTime,
+            end_time: reportEndTime,
             name: reportName,
             location: reportLocation,
             workDescription: reportWorkDescription,
@@ -187,6 +199,8 @@ function fetchItemList() {
             tableBody.append(`
                 <tr>
                     <td>${report.date}</td>
+                    <td>${report.startTime}</td>
+                    <td>${report.endTime}</td>
                     <td>${report.name}</td>
                     <td>${report.location}</td>
                     <td>${report.workDescription}</td>

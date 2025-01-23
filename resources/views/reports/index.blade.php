@@ -29,6 +29,8 @@
                         <thead>
                             <tr>
                                 <th>日付</th>
+                                <th>開始時間</th>
+                                <th>終了時間</th>
                                 <th>名前</th>
                                 <th>作業場所</th>
                                 <th>作業内容</th>
@@ -40,6 +42,8 @@
                             @foreach ($reports as $report)
                                 <tr>
                                     <td>{{ $report->date }}</td>
+                                    <td>{{ $report->start_time }}</td>
+                                    <td>{{ $report->end_time }}</td>
                                     <td>{{ $report->name }}</td>
                                     <td>{{ $report->location }}</td>
                                     <td>{{ $report->workDescription }}</td>
@@ -77,6 +81,16 @@
                             <label for="reportDate" class="form-label">日付</label>
                             <input type="text" class="form-control" id="reportDate">
                             <div id="error-date" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportStartTime" class="form-label">作業開始時間</label>
+                            <input type="text" class="form-control" id="reportStartTime">
+                            <div id="error-start_time" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportEndTime" class="form-label">作業終了時間</label>
+                            <input type="text" class="form-control" id="reportEndTime">
+                            <div id="error-end_time" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportName" class="form-label">名前</label>
@@ -127,6 +141,16 @@
                             <label for="reportDate" class="form-label">日付</label>
                             <input type="date" max="9999-12-31" class="form-control" id="addReportDate">
                             <div id="error-date" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportStartTime" class="form-label">作業開始時間</label>
+                            <input type="time" class="form-control" id="addReportStartTime" value="08:00">
+                            <div id="error-startDate" class="error-message"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportEndTime" class="form-label">作業終了時間</label>
+                            <input type="time" class="form-control" id="addReportEndTime" value="17:00">
+                            <div id="error-endDate" class="error-message"></div>
                         </div>
                         <div class="mb-3">
                             <label for="reportName" class="form-label">名前</label>

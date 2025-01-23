@@ -37,6 +37,8 @@
                         <thead>
                             <tr>
                                 <th>日付</th>
+                                <th>作業開始時間</th>
+                                <th>作業終了時間</th>
                                 <th>名前</th>
                                 <th>作業場所</th>
                                 <th>作業内容</th>
@@ -48,6 +50,8 @@
                             @foreach ($reports as $report)
                                 <tr>
                                     <td>{{ $report->date }}</td>
+                                    <td>{{ $report->start_time }}</td>
+                                    <td>{{ $report->end_time }}</td>
                                     <td>{{ $report->name }}</td>
                                     <td>{{ $report->location }}</td>
                                     <td>{{ $report->workDescription }}</td>

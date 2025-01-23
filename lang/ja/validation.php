@@ -275,8 +275,10 @@ return [
         'year'                     => '年',
 
         'location'                 => '作業場所',
-        'workDescription'         => '作業内容',
+        'workDescription'          => '作業内容',
         'machine'                  => '使用機械',
         'fuel'                     => '使用燃料',
+        'start_time'               => '作業開始時間',
+        'end_time'                 => '作業終了時間',
     ],
 ];
