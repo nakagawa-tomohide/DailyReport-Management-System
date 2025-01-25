@@ -3,17 +3,17 @@
 @section('title', '日報一覧')
 
 @section('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content_header')
-    <h1>日報一覧</h1>
+
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-row card-info card-outline">
                 <div class="card-header">
                     <div class="header-content">
                         <h3 class="card-title">日報一覧</h3>

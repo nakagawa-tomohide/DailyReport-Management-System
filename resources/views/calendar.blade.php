@@ -3,17 +3,31 @@
 @section('title', 'スケジュール')
 
 @section('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content_header')
-    <h1>スケジュール</h1>
+
 @stop
 
 @section('content')
+
 <body>
-    <div style="width: 60%;margin: auto">
-        <div id='calendar'></div>
+    <div class="card card-row card-secondary">
+        <div class="card-header">
+            <h3 class="card-title">
+                スケジュール
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="card card-info card-outline">
+                <div class="card-body">
+                    <div style="width: 60%;margin: auto">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 @stop

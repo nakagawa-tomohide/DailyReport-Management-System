@@ -7,13 +7,13 @@
 @endsection
 
 @section('content_header')
-    <h1>日報一覧</h1>
+
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-row card-info card-outline">
                 <div class="card-header">
                     <h3 class="card-title">日報一覧</h3>
                     <div class="card-tools">
