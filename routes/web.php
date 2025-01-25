@@ -7,6 +7,8 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminReportController;
+use App\Http\Controllers\Admin\AdminHomeController;
+
 
 
 /*
@@ -59,9 +61,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
     Route::middleware('auth:admin')->group(function () {
-        Route::get('home', function () {
-            return view('admin.home');
-        })->name('admin.home');
+        Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
 
         Route::get('/report', [AdminReportController::class, 'index'])->name('admin.index');
         Route::get('/search', [AdminReportController::class, 'search'])->name('report.search');
