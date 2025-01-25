@@ -32,7 +32,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td>今日のスケジュールはありません。</td>
+                                    <td>日報はありません。</td>
                                 </tr>
                             @endforelse
                         </tbody>
