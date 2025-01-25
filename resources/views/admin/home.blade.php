@@ -19,19 +19,19 @@
                 <h5 class="card-title">今日の日報提出者</h5>
             </div>
             <div class="card-body">
-                <div>
-                    <table>
-                        <tbody>
-                            @forelse ($reports as $report)
-                                <tr>
-                                    <td>・{{ $report->name }}</td>
-                                </tr>
-                            @empty
-                                <p>まだいません。</p>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                <table>
+                    <tbody>
+                        @forelse ($reports as $report)
+                            <tr>
+                                <td>・{{ $report->name }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td>まだいません。</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card card-primary card-outline">
@@ -39,19 +39,19 @@
                 <h5 class="card-title">今日の予定</h5>
             </div>
             <div class="card-body">
-                <div>
-                    <table>
-                        <tbody>
-                            @forelse ($todaySchedules as $todaySchedule)
-                                <tr>
-                                    <td>・{{ $todaySchedule->event_name }}</td>
-                                </tr>
-                            @empty
-                                <p>今日の予定はありません。</p>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                <table>
+                    <tbody>
+                        @forelse ($todaySchedules as $todaySchedule)
+                            <tr>
+                                <td>・{{ $todaySchedule->event_name }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td>今日の予定はありません。</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card card-primary card-outline">
@@ -59,14 +59,16 @@
                 <h5 class="card-title">明日の予定</h5>
             </div>
             <div class="card-body">
-            <table>
+                <table>
                     <tbody>
                         @forelse ($tomorrowSchedules as $tomorrowSchedule)
                             <tr>
                                 <td>・{{ $tomorrowSchedule->event_name }}</td>
                             </tr>
                         @empty
-                            <p>明日の予定はありません。</p>
+                            <tr>
+                                <td>明日の予定はありません。</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -81,7 +83,5 @@
 @stop
 
 @section('js')
-<script>
-    console.log('Hi!');
-</script>
+
 @stop
