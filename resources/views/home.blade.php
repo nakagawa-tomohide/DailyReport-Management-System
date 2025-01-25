@@ -19,25 +19,23 @@
                 <h5 class="card-title">自分の日報（最近の3件）</h5>
             </div>
             <div class="card-body">
-                <div class="card-body">
-                    <table>
-                        <tbody>
-                            @forelse ($reports as $report)
-                                <tr>
-                                    <td>{{ $report->date }}</td>
-                                    <td>{{ $report->start_time }}</td>
-                                    <td>{{ $report->end_time }}</td>
-                                    <td>{{ $report->location }}</td>
-                                    <td>{{ $report->workDescription }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td>日報はありません。</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                <table>
+                    <tbody>
+                        @forelse ($reports as $report)
+                            <tr>
+                                <td>{{ $report->date }}</td>
+                                <td>{{ $report->start_time }}</td>
+                                <td>{{ $report->end_time }}</td>
+                                <td>{{ $report->location }}</td>
+                                <td>{{ $report->workDescription }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td>日報はありません。</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="card card-primary card-outline">
