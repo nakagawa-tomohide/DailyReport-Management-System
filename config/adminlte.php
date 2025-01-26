@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => '',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -312,6 +312,12 @@ return [
             'topnav_right' => true,
             'can' => 'isUser',
         ],
+        [
+            'text' => 'HOME',
+            'url' => '/',
+            'topnav' => true,
+            'can' => 'isUser',
+        ],
 
         // 管理者メニュー
         [
@@ -327,6 +333,12 @@ return [
             'icon' => 'fa fa-calendar',
             'can' => 'isAdmin',
         ],
+        [
+            'text' => 'HOME',
+            'url' => '/admin',
+            'topnav' => true,
+            'can' => 'isAdmin',
+        ]
     ],
 
     /*
