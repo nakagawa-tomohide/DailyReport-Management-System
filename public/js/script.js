@@ -22,18 +22,6 @@ $('#add').on('click', function() {
     const reportMachine = $('#addReportMachine').val();
     const reportFuel = $('#addReportFuel').val();
 
-    console.log({
-        _token: $('meta[name="csrf-token"]').attr('content'),
-        date: reportDate,
-        start_time: reportStartTime,
-        end_time: reportEndTime,
-        name: reportName,
-        location: reportLocation,
-        workDescription: reportWorkDescription,
-        machine: reportMachine,
-        fuel: reportFuel,
-    });
-
     $.ajax ({
         url: '/reports/add',
         type: 'POST',
@@ -55,8 +43,7 @@ $('#add').on('click', function() {
 
         fetchItemList();
     })
-    .fail(function(xhr, status, error) {
-        console.log(`Error: ${status}, ${error}, ${xhr.responseText}`)
+    .fail(function(xhr) {
 
         if (xhr.status === 422) {
             // バリデーションエラーの場合
@@ -94,8 +81,7 @@ $(document).on('click', '.editBtn', function () {
 
         $('#editModal').modal('show');
     })
-    .fail(function (status, error) {
-        console.log(`Error: ${status}, ${error}`);
+    .fail(function () {
         alert('データの取得に失敗しました');
     });
 });
@@ -142,8 +128,7 @@ $('#saveChanges').on('click', function() {
             // Ajaxでリストを再描写
             fetchItemList();
         })
-    .fail(function (xhr, status, error) {
-        console.log(`Error: ${status}, ${error}, ${xhr.responseText}`);
+    .fail(function (xhr) {
 
         if (xhr.status === 422) {
             // バリデーションエラーの場合
@@ -171,8 +156,7 @@ $(document).on('click', '.deleteBtn', function(){
 
         fetchItemList();
     })
-    .fail(function(status, error){
-        console.log(`Error: ${status}, ${error}`);
+    .fail(function(){
         alert('削除に失敗しました');
     });
 });
@@ -213,8 +197,7 @@ function fetchItemList() {
             `);
         });
     })
-    .fail(function(status, error) {
-        console.log(`Error: ${status}, ${error}`)
+    .fail(function() {
         alert('リストの取得に失敗しました');
     })
 };
