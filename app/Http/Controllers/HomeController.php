@@ -31,6 +31,7 @@ class HomeController extends Controller
         $tomorrow = now()->addDay()->toDateString();
 
         $reports = Report::where('user_id', $userID)
+                    ->orderBy('date', 'desc')
                     ->limit(3)
                     ->get();
 
