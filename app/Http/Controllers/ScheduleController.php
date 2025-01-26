@@ -7,6 +7,10 @@ use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * イベントを登録
      *

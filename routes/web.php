@@ -40,8 +40,10 @@ Route::prefix('reports')->group(function () {
     Route::get('/{id}/delete', [ReportController::class, 'delete']);
 });
 
-Route::get('/calendar', function() {
-    return view('calendar');
+Route::middleware('auth')->group(function () {
+    Route::get('/calendar', function() {
+        return view('calendar');
+    });
 });
 
 // イベント登録処理
